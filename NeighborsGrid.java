@@ -1,5 +1,6 @@
 public class NeighborsGrid {
-    private int[][] grid;
+    private static int[][] grid;
+    private String[][] gridStr;
     private int totalScore;
 
     /**
@@ -7,8 +8,23 @@ public class NeighborsGrid {
      */
     public NeighborsGrid() {
         grid = new int[5][5];
+        gridStr = new String[5][5];
+        for (int i = 0; i < gridStr.length; i++) {
+            for (int k = 0; k < gridStr[0].length; k++) {
+                gridStr[i][k] = " ";            
+            }
+        }
     }
 
+    public void convertIntToEmoji() {
+        for (int i = 0; i < grid.length; i++) {
+            for (int k = 0; k < grid[0].length; k++) {
+                if (grid[i][k] == 1) {
+                    gridStr[i][k] = "1️⃣";
+                }
+            }
+        }
+    }
     /**
      * Inserts value into the space at grid[row][column]
      * row & column will be zero-indexed
@@ -40,32 +56,64 @@ public class NeighborsGrid {
         }
         return false;
     }
+    
     public String toString() {
-        String[][] originalGrid = {
-        {"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-",}
-
-
-
-        }
+        String originalGrid = {
+        {"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"},
+        {"|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"},
+        {"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"},
+        {"|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"},
+        {"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"},
+        {"|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"},
+        {"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"},
+        {"|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"},
+        {"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"},
+        {"|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"," "," "," ","|"},
+        {"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"}
+        };
+        return ;
     }
 
----------- 1 0 
--------------------------
-| 10 |  🔟 |    |    |   |
----------------------
-|    |    |    |    |    |
----------------------
-|   |   |   |   |   |
----------------------
----------------------
+    public static int countScore(){
+        int score = 0;
+        for(int row = 0; row < grid.length; row++){
+            for(int column = 0; column < grid[row].length; column++){
+                int count = 1;
+                for(int nextColumn = column + 1; nextColumn < grid[row].length; nextColumn++){
+                    if(grid[row][column] = grid[row][nextColumn]){
+                        count ++;
+                    }else{
+                        break;
+                    }
+                }
+                if(count >=2 && count<=5){
+                    score += row[row][column] * count;
+                }
+                count = nextColumn - 1;
+            }
+        }
+
+        for(int column = 0; column< grid[0].lenght;column++){
+            for(int row = 0; row<grid.length;row++){
+                int count = 1;
+                for(int nextRow = row + 1; row < grid.length; nextRow ++){
+                    if(grid[row][column] = grid[nextRow][column]){
+                        count ++;
+                    }else{
+                        break;
+                    }
+                }
+                if(count >=2 && count<=5){
+                    score += row[row][column] * count;
+                }
+                count = nextRow - 1;
+            }
+        }   
+    }
+    
+}
+    
 
 
-----------------------------------
-|     |      |      |      |     |
-----------------------------------
-|     |      |      |      |     |
-----------------------------------
-|     |      |      |      |     |
-----------------------------------
-|     |      |      |      |     |
-----------------------------------")
+ // use this to copy paste numbers
+//  1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟
